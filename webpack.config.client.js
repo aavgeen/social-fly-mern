@@ -24,6 +24,13 @@ const config = {
         // process other types of files and convert them into valid modules that can be consumed by your application and added to the dependency graph.
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: [

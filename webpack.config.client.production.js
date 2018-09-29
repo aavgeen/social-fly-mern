@@ -16,6 +16,13 @@ const config = {
     module: {       //loader for files other than JS.
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: [
