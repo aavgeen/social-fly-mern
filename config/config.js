@@ -9,4 +9,4 @@ const config = {
     '/social-fly-mern'
 }
 
-export default config
+export default config;

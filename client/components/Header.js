@@ -196,12 +196,12 @@ class PrimarySearchAppBar extends React.Component {
                   <MailIcon />
                 </Badge>
               </IconButton>
-              <NavLink to="/about" activeStyle={{color:'grey'}} exact>
-              <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={1} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              <NavLink to="/about" className={classes.title} activeStyle={{color:'#E0F2F1'}} exact>
+                <IconButton color="inherit">
+                  <Badge className={classes.margin} badgeContent={1} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
               </NavLink>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
