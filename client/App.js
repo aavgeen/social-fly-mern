@@ -8,22 +8,23 @@ import {cyan, teal, red, blueGrey} from '@material-ui/core/colors'
 
 // Create a theme instance.
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-    light: blueGrey['100'],
-    main:  blueGrey['700'],
-    dark: blueGrey['900'],
-    contrastText: '#fff',
-  },
-  secondary: {
-    light: '#ff79b0',
-    main: teal['50'],
-    dark: teal['100'],
-    contrastText: '#000',
-  },
-    openTitle: cyan['400'], //INDIGO['300'] should be  used to make cards with shadow
-    protectedTitle: red['400'],
-    type: 'light'
+    palette: {
+      primary: {
+      // light: blueGrey['100'],
+      light: '#FFA726',
+      // main:  blueGrey['700'],
+      main: '#009688',
+      // dark: blueGrey['900'],
+      dark: '#00897B',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff79b0',
+      // main: teal['50'],
+      main: '#FDD835',
+      dark: teal['100'],
+      contrastText: '#000',
+    }
   }
 })
 
