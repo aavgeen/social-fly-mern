@@ -8,6 +8,8 @@ import helmet from 'helmet'
 import Template from './../index';
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import newsfeedRoutes from './routes/newsfeed.routes'
+import commentRoutes from './routes/comment.routes'
 
 //comment out before building for production
 import devBundle from './devBundle'
@@ -29,8 +31,12 @@ app.use(helmet())
 app.use(cors())
 
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
-app.use('/', userRoutes);
-app.use('/', authRoutes);
+
+// Define Routes
+app.use('/v1', userRoutes);
+app.use('/v1', authRoutes);
+app.use('/v1', newsfeedRoutes);
+app.use('/v1', commentRoutes);
 
 
 app.get('/', (req, res) => {

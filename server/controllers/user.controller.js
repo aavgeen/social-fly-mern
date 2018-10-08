@@ -11,7 +11,8 @@ const create = (req, res, next) => {
       })
     }
     res.status(200).json({
-      message: "Successfully signed up!"
+      message: "Successfully signed up!",
+      user_id: ""
     })
   })
 }
@@ -22,7 +23,7 @@ const create = (req, res, next) => {
 const userByID = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
     if (err || !user)
-      return res.status('400').json({
+      return res.status(400).json({
         error: "User not found"
       })
     req.profile = user
