@@ -5,10 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import { Grid, TextField, FormControl, IconButton, Input, InputAdornment, InputLabel, Button } from '@material-ui/core';
+import { FormControl, IconButton, Input, InputAdornment, InputLabel, Button } from '@material-ui/core';
 import { AccountCircle, Visibility, VisibilityOff, Face } from '@material-ui/icons';
-
+import { signin, auth } from './../services/AuthHelper';
 function TabContainer(props) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '40px', border: '2px',WebkitBoxShadow: "0px 5px 10px #9E9E9E",
@@ -59,6 +58,9 @@ const styles = theme => ({
         marginRight: '30%',
         marginTop: '10%'
     },
+    error: {
+      verticalAlign: 'middle'
+    },
   });
   class SignUpIn extends React.Component {
     constructor(props){
@@ -69,6 +71,8 @@ const styles = theme => ({
             email: '',
             username: '',
             showPassword: false,
+            error: '',
+            redirectToReferrer: false
         };
     }
     handleChange = () => {
@@ -90,6 +94,23 @@ const styles = theme => ({
     }
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !this.state.showPassword }));
+    };
+    handleLoginClick = () => {
+        const user = {
+            email: this.state.email || undefined,
+            password: this.state.password || undefined
+        }
+        signin(user).then((data) => {
+        if (data.error) {
+            this.setState({error: data.error})
+        } else {
+            auth.authenticate(data, () => { // TO supply the jwt to the session storage.
+            this.setState({redirectToReferrer: true})
+            // Redirect here
+            
+            })
+        }
+        })
     };
     render() {
       const { classes } = this.props;
@@ -216,8 +237,14 @@ const styles = theme => ({
                         />
                     </FormControl>
                     <br></br>
+                    {
+                        this.state.error && (<Typography component="p" color="error">
+                        <Icon color="error" className={classes.error}>error</Icon>
+                        {this.state.error}
+                        </Typography>)
+                    }
                     <br></br>
-                    <Button variant="raised" size="medium" color="primary" className={classes.button}>
+                    <Button variant="raised" size="medium" color="primary" className={classes.button} onClick={() => this.handleLoginClick}>
                         Login
                     </Button>
                 </div>
